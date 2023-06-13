@@ -7,17 +7,21 @@ import { ProductEditComponent } from './product-edit/product-edit.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductPageComponent } from './product-page/product-page.component';
 
+import { StoreModule } from '@ngrx/store';
+import { productsReducer } from './state/products.reduces';
+
 @NgModule({
   declarations: [
     ProductsPageComponent,
     ProductsListComponent,
     ProductEditComponent,
-    ProductPageComponent,
+    ProductPageComponent
   ],
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forFeature('products', productsReducer)
   ]
 })
 export class ProductsModule { }
