@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+
 import { CommonModule } from '@angular/common';
 import { ProductsRoutingModule } from './products-routing.module';
 import { ProductsPageComponent } from './products-page/products-page.component';
@@ -8,7 +9,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProductPageComponent } from './product-page/product-page.component';
 
 import { StoreModule } from '@ngrx/store';
-import { productsReducer } from './state/products.reduces';
+import { productsReducer } from './state/products.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductEffects } from './state/products.effects';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,8 @@ import { productsReducer } from './state/products.reduces';
     CommonModule,
     ProductsRoutingModule,
     ReactiveFormsModule,
-    StoreModule.forFeature('products', productsReducer)
+    StoreModule.forFeature('products', productsReducer),
+    EffectsModule.forFeature([ProductEffects])  
   ]
 })
 export class ProductsModule { }
