@@ -56,7 +56,7 @@ export class ProductEffects {
       ofType(ProductsPageActions.updateProduct),
       concatMap(({ product }) =>
         this.productsService.update(product).pipe(
-          map(() => ProductsAPIActions.updateProductSuccess({ product })),
+          map(() => ProductsAPIActions.updateProductSuccess({ update: { id: product.id, changes: product  } })),
           catchError((error) =>
             of(ProductsAPIActions.updateProductFailure({ message: error }))
           )
@@ -91,7 +91,7 @@ export class ProductEffects {
       ),
     { dispatch: false }
   );
-  
+
   constructor(
     private productsService: ProductsService,
     private actions$: Actions,
